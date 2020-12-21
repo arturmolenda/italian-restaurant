@@ -1,0 +1,2 @@
+# disable eslint inside sanity.io folder
+/sanity
