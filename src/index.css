@@ -4,6 +4,18 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Italiana&display=swap');
 
+body {
+  background-color: #dcdcde;
+}
+
 .font-italiana {
   font-family: 'Italiana', serif;
+}
+
+.react-multiple-carousel__arrow {
+  outline: none !important;
+}
+
+.rounded-none-important {
+  border-radius: 0px !important;
 }

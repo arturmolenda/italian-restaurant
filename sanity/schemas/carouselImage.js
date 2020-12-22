@@ -4,8 +4,8 @@ export default {
   type: 'document',
   fields: [
     {
-      name: 'images',
-      title: 'Images',
+      name: 'imagesArray',
+      title: 'Images Array',
       type: 'array',
       of: [{ type: 'reference', to: { type: 'images' } }],
     },
@@ -13,7 +13,7 @@ export default {
   preview: {
     select: {
       title: 'title',
-      images: 'images',
+      imagesArray: 'imagesArray',
     },
     prepare: () => {
       return {
