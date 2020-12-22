@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
@@ -28,6 +28,7 @@ const responsive = {
 };
 
 const Slider = () => {
+  const [autoPlay, setAutoPlay] = useState(true);
   const { carouselImages: images } = useContext(StateContext);
   console.log(images);
   const carouselItems =
@@ -52,11 +53,17 @@ const Slider = () => {
             <Skeleton className='absolute top-0 bottom-0 left-0 right-0 rounded-none-important' />
           </div>
         ));
+
+  const carouselHover = () => setAutoPlay((prevState) => !prevState);
   return (
-    <div style={{ width: '100%', display: 'block' }}>
+    <div
+      style={{ width: '100%', display: 'block' }}
+      onMouseEnter={carouselHover}
+      onMouseLeave={carouselHover}
+    >
       <Carousel
         responsive={responsive}
-        autoPlay={images && images.length !== 0}
+        autoPlay={images && images.length !== 0 && autoPlay}
         autoPlaySpeed={4000}
         removeArrowOnDeviceType={['tablet', 'mobile']}
         infinite
