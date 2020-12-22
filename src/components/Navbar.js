@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
-const linkStyle = 'p-1 uppercase text-sm   hover:text-blue-300';
+const linkStyle = 'p-1 uppercase text-sm hover:text-blue-300';
 const activeLink = 'text-blue-300';
 
 const Navbar = () => {
@@ -13,7 +13,7 @@ const Navbar = () => {
         </h1>
       </Link>
       <div className='container flex justify-evenly'>
-        <NavLink to='/' activeClassName={activeLink}>
+        <NavLink to='/' exact activeClassName={activeLink}>
           <p className={linkStyle}>Home</p>
         </NavLink>
         <NavLink to='/about' activeClassName={activeLink}>
