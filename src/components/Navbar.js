@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
-const linkStyle = 'p-1 uppercase text-sm hover:text-blue-300';
-const activeLink = 'text-blue-300';
+const linkStyle = 'p-1 uppercase text-sm hover:text-yellow-300';
+const activeLink = 'text-yellow-300';
 
 const Navbar = () => {
   return (
     <div className='bg-gray-900 py-5 w-full flex flex-col justify-center items-center text-gray-300'>
       <Link to='/'>
-        <h1 className='text text-5xl mb-4 text-white font-bold font-italiana'>
+        <h1 className='text text-5xl mb-4 text-white font-bold font-italiana transition-all hover:text-yellow-400'>
           GRAZIE
         </h1>
       </Link>
