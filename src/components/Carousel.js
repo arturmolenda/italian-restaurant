@@ -8,6 +8,15 @@ import Skeleton from 'react-loading-skeleton';
 import placeholderImg from '../placeholderImg.png';
 import { StateContext } from '../context/context';
 
+import client from '../client';
+import imageUrlBuilder from '@sanity/image-url';
+
+const builder = imageUrlBuilder(client);
+
+const urlFor = (src) => {
+  return builder.image(src);
+};
+
 const responsive = {
   superLargeDesktop: {
     breakpoint: { max: 4000, min: 3000 },
@@ -37,7 +46,7 @@ const Slider = () => {
           <Img
             key={img._id}
             alt={img.description ? img.description : 'Italian dish'}
-            src={`${img.image}?w=1280`}
+            src={urlFor(img.image).width(1280).url()}
             onDragStart={(e) => e.preventDefault()}
             loader={
               <div className='relative'>

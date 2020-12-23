@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import url('https://unpkg.com/@tailwindcss/typography@0.2.x/dist/typography.min.css');
 @import url('https://fonts.googleapis.com/css2?family=Italiana&display=swap');
 
 body {
@@ -18,4 +18,8 @@ body {
 
 .rounded-none-important {
   border-radius: 0px !important;
+}
+
+.block-content-text-white > * {
+  color: #fff !important;
 }
