@@ -11,6 +11,7 @@ import post from './post';
 import author from './author';
 import carouselImage from './carouselImage';
 import images from './images';
+import aboutUs from './aboutUs';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -21,6 +22,7 @@ export default createSchema({
   types: schemaTypes.concat([
     // The following are document types which will appear
     // in the studio.
+    aboutUs,
     images,
     carouselImage,
     post,
