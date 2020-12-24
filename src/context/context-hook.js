@@ -6,6 +6,7 @@ export const useStateContext = () => {
   const [aboutData, setAboutData] = useState({});
   const [businessData, setBusinessData] = useState({});
   const [menuData, setMenuData] = useState({});
+  const [galleryImages, setGalleryImages] = useState([]);
 
   const getCarouselImages = () => {
     sanityClient
@@ -128,11 +129,28 @@ export const useStateContext = () => {
       .catch((err) => console.log(err));
   };
 
+  const getGalleryImages = () => {
+    sanityClient
+      .fetch(
+        `
+    *[_type == "images"]{
+      title,
+      description,
+      "image": image.asset
+   }`
+      )
+      .then((res) => {
+        if (res) setGalleryImages(res);
+      })
+      .catch((err) => console.log(err));
+  };
+
   useEffect(() => {
     getCarouselImages();
     getAboutData();
     getBusinessData();
     getMenuData();
+    getGalleryImages();
   }, []);
 
   return {
@@ -141,5 +159,6 @@ export const useStateContext = () => {
     aboutData,
     businessData,
     menuData,
+    galleryImages,
   };
 };
