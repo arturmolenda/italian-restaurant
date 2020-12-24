@@ -13,10 +13,18 @@ const App = () => {
     brandName,
     businessData,
     menuData,
+    galleryImages,
   } = useStateContext();
   return (
     <StateContext.Provider
-      value={{ carouselImages, aboutData, brandName, businessData, menuData }}
+      value={{
+        carouselImages,
+        aboutData,
+        brandName,
+        businessData,
+        menuData,
+        galleryImages,
+      }}
     >
       <Router>
         <Layout>
