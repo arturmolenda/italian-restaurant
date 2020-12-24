@@ -6,9 +6,17 @@ import Home from './components/screens/Home';
 import { StateContext } from './context/context';
 import { useStateContext } from './context/context-hook';
 const App = () => {
-  const { carouselImages, aboutData } = useStateContext();
+  const {
+    carouselImages,
+    aboutData,
+    brandName,
+    businessData,
+    menuData,
+  } = useStateContext();
   return (
-    <StateContext.Provider value={{ carouselImages, aboutData }}>
+    <StateContext.Provider
+      value={{ carouselImages, aboutData, brandName, businessData, menuData }}
+    >
       <Router>
         <Layout>
           <Switch>
