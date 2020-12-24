@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import About from './components/screens/About';
 import Home from './components/screens/Home';
+import Menu from './components/screens/Menu';
 import { StateContext } from './context/context';
 import { useStateContext } from './context/context-hook';
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
           <Switch>
             <Route path='/' exact component={Home} />
             <Route path='/about' exact component={About} />
+            <Route path='/menu' exact component={Menu} />
           </Switch>
         </Layout>
       </Router>
