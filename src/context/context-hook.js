@@ -7,6 +7,7 @@ export const useStateContext = () => {
   const [businessData, setBusinessData] = useState({});
   const [menuData, setMenuData] = useState({});
   const [galleryImages, setGalleryImages] = useState([]);
+  const [blogPosts, setBlogPosts] = useState([]);
 
   const getCarouselImages = () => {
     sanityClient
@@ -151,12 +152,37 @@ export const useStateContext = () => {
       .catch((err) => console.log(err));
   };
 
+  const getBlogPosts = () => {
+    sanityClient
+      .fetch(
+        `
+    *[_type == "post" ]{
+      title,
+      "slug": slug.current,
+      "category": categories[0]->title,
+      "author": author->name,
+      "mainImage": {
+        "image": mainImage.asset,
+        "metadata": mainImage.asset->metadata
+      },
+      publishedAt,
+      body,
+      cardText
+    }`
+      )
+      .then((res) => {
+        if (res) setBlogPosts(res);
+      })
+      .catch((err) => console.log(err));
+  };
+
   useEffect(() => {
     getCarouselImages();
     getAboutData();
     getBusinessData();
     getMenuData();
     getGalleryImages();
+    getBlogPosts();
   }, []);
 
   return {
@@ -166,5 +192,6 @@ export const useStateContext = () => {
     businessData,
     menuData,
     galleryImages,
+    blogPosts,
   };
 };

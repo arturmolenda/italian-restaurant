@@ -7,4 +7,5 @@ export const StateContext = createContext({
   businessData: {},
   menuData: {},
   galleryImages: [],
+  blogPosts: [],
 });
