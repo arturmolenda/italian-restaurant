@@ -50,6 +50,12 @@ body {
   color: #fff;
   left: 20px;
 }
+@media (max-width: 550px) {
+  .lightbox-img-description {
+    top: 35px;
+    left: 10px;
+  }
+}
 .lightbox-img-description a {
   color: rgb(217, 119, 6);
 }
