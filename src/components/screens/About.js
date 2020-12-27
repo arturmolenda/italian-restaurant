@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { StateContext } from '../../context/context';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faHeart,
@@ -8,8 +8,12 @@ import {
   faEgg,
 } from '@fortawesome/free-solid-svg-icons';
 import BlockContent from '@sanity/block-content-to-react';
-import client from '../../client';
 import imageUrlBuilder from '@sanity/image-url';
+import { Img } from 'react-image';
+
+import { StateContext } from '../../context/context';
+import client from '../../client';
+import LoadedImageSrc from '../LoadedImageSrc';
 
 const builder = imageUrlBuilder(client);
 
@@ -28,7 +32,7 @@ const iconStylingRight =
 
 const About = () => {
   const { aboutData } = useContext(StateContext);
-  console.log(aboutData);
+
   return (
     <>
       {aboutData && Object.keys(aboutData).length !== 0 && (
@@ -36,9 +40,10 @@ const About = () => {
           <div
             className='h-screen relative z-0 bg-fixed -mt-32 bg-center bg-no-repeat bg-cover flex justify-center items-center'
             style={{
-              backgroundImage: `url(${urlFor(
-                aboutData.aboutUsImage.image
-              ).url()})`,
+              backgroundImage: `url(${
+                LoadedImageSrc(urlFor(aboutData.aboutUsImage.image).url()) ||
+                aboutData.aboutUsImage.metadata.lqip
+              })`,
               zIndex: -1,
             }}
           >
@@ -58,9 +63,11 @@ const About = () => {
           <div
             className='bg-fixed bg-center bg-no-repeat bg-cover flex justify-center items-center'
             style={{
-              backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5) ),url(${urlFor(
-                aboutData.extraImage.image
-              ).url()})`,
+              backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5) ),url(${
+                LoadedImageSrc(urlFor(aboutData.extraImage.image).url()) ||
+                aboutData.extraImage.metadata.lqip
+              })`,
+
               zIndex: -1,
             }}
           >
@@ -89,12 +96,21 @@ const About = () => {
                   />
                 </div>
               </div>
-              <img
-                className='p-10'
-                src={`${urlFor(aboutData.dishImage.image)
-                  .size(600, 600)
-                  .url()}`}
-                alt={aboutData.dishImage.description}
+
+              <Img
+                alt={
+                  aboutData.dishImage.description
+                    ? aboutData.dishImage.description
+                    : 'Italian dish'
+                }
+                src={urlFor(aboutData.dishImage.image).size(600, 600).url()}
+                loader={
+                  <img
+                    src={aboutData.dishImage.metadata.lqip}
+                    className='w-full h-full'
+                    alt={'Thumbnail'}
+                  />
+                }
               />
               <div className='flex h-96 sm:justify-between flex-col'>
                 <div className={advContainer}>

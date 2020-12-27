@@ -6,6 +6,7 @@ export const useStateContext = () => {
   const [aboutData, setAboutData] = useState({});
   const [businessData, setBusinessData] = useState({});
   const [menuData, setMenuData] = useState({});
+  const [galleryImages, setGalleryImages] = useState([]);
 
   const getCarouselImages = () => {
     sanityClient
@@ -16,7 +17,8 @@ export const useStateContext = () => {
           _id,
           title,
           description,
-          "image": image.asset
+          "image": image.asset,
+          "metadata": image.asset->metadata
         }
       }`
       )
@@ -34,13 +36,15 @@ export const useStateContext = () => {
     "aboutUsImage": aboutUsImage[0]->{
       title,
       description,
-      "image": image.asset
+      "image": image.asset,
+      "metadata": image.asset->metadata
     },
     aboutUs,
     "dishImage": dishImage[0]->{
       title,
       description,
-      "image": image.asset
+      "image": image.asset,
+      "metadata": image.asset->metadata
     },
     advantage1,
     advantage2,
@@ -49,7 +53,8 @@ export const useStateContext = () => {
     "extraImage": extraImage[0]->{
       title,
       description,
-      "image": image.asset
+      "image": image.asset,
+      "metadata": image.asset->metadata
     },
  }`
       )
@@ -128,11 +133,30 @@ export const useStateContext = () => {
       .catch((err) => console.log(err));
   };
 
+  const getGalleryImages = () => {
+    sanityClient
+      .fetch(
+        `
+    *[_type == "images" && showInGallery == true]{
+      title,
+      description,
+      showInGallery,
+      "image": image.asset,
+      "metadata": image.asset->metadata
+   }`
+      )
+      .then((res) => {
+        if (res) setGalleryImages(res);
+      })
+      .catch((err) => console.log(err));
+  };
+
   useEffect(() => {
     getCarouselImages();
     getAboutData();
     getBusinessData();
     getMenuData();
+    getGalleryImages();
   }, []);
 
   return {
@@ -141,5 +165,6 @@ export const useStateContext = () => {
     aboutData,
     businessData,
     menuData,
+    galleryImages,
   };
 };

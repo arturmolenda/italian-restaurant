@@ -1,15 +1,14 @@
 import React, { useContext, useState } from 'react';
 
-import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import Carousel from 'react-multi-carousel';
 import { Img } from 'react-image';
 import Skeleton from 'react-loading-skeleton';
+import imageUrlBuilder from '@sanity/image-url';
 
 import placeholderImg from '../placeholderImg.png';
 import { StateContext } from '../context/context';
-
 import client from '../client';
-import imageUrlBuilder from '@sanity/image-url';
 
 const builder = imageUrlBuilder(client);
 
@@ -39,7 +38,6 @@ const responsive = {
 const Slider = () => {
   const [autoPlay, setAutoPlay] = useState(true);
   const { carouselImages: images } = useContext(StateContext);
-  console.log(images);
   const carouselItems =
     images && images.length !== 0
       ? images.map((img) => (
@@ -49,15 +47,36 @@ const Slider = () => {
             src={urlFor(img.image).width(1280).url()}
             onDragStart={(e) => e.preventDefault()}
             loader={
-              <div className='relative'>
-                <img alt='placeholder' src={placeholderImg} />
-                <Skeleton className='absolute top-0 bottom-0 left-0 right-0 rounded-none-important' />
-              </div>
+              Number(img.metadata.dimensions.aspectRatio.toFixed(1)) === 1.5 ? (
+                <div
+                  className='relative'
+                  onDragStart={(e) => e.preventDefault()}
+                >
+                  <img src={placeholderImg} alt='placeholder' />
+
+                  <img
+                    src={img.metadata.lqip}
+                    className='absolute top-0 w-full h-full'
+                    alt={'Thumbnail'}
+                  />
+                </div>
+              ) : (
+                <img
+                  className='w-full h-full'
+                  src={img.metadata.lqip}
+                  onDragStart={(e) => e.preventDefault()}
+                  alt={'Thumbnail'}
+                />
+              )
             }
           />
         ))
-      : [...Array(5).keys()].map((index) => (
-          <div key={index} className='relative'>
+      : [...Array(6).keys()].map((index) => (
+          <div
+            key={index}
+            className='relative'
+            onDragStart={(e) => e.preventDefault()}
+          >
             <img alt='placeholder' src={placeholderImg} />
             <Skeleton className='absolute top-0 bottom-0 left-0 right-0 rounded-none-important' />
           </div>
