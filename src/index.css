@@ -29,3 +29,27 @@ body {
   row-gap: 10px;
   column-gap: 40px;
 }
+
+.my-masonry-grid {
+  display: flex;
+  width: auto;
+}
+.my-masonry-grid_column {
+  padding: 0 0.35rem;
+  background-clip: padding-box;
+}
+
+.my-masonry-grid_column > img {
+  margin: 0.7rem 0;
+  cursor: pointer;
+}
+
+.lightbox-img-description {
+  top: 13px;
+  z-index: 11111;
+  color: #fff;
+  left: 20px;
+}
+.lightbox-img-description a {
+  color: rgb(217, 119, 6);
+}
