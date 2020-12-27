@@ -17,7 +17,8 @@ export const useStateContext = () => {
           _id,
           title,
           description,
-          "image": image.asset
+          "image": image.asset,
+          "metadata": image.asset->metadata
         }
       }`
       )
@@ -35,13 +36,15 @@ export const useStateContext = () => {
     "aboutUsImage": aboutUsImage[0]->{
       title,
       description,
-      "image": image.asset
+      "image": image.asset,
+      "metadata": image.asset->metadata
     },
     aboutUs,
     "dishImage": dishImage[0]->{
       title,
       description,
-      "image": image.asset
+      "image": image.asset,
+      "metadata": image.asset->metadata
     },
     advantage1,
     advantage2,
@@ -50,7 +53,8 @@ export const useStateContext = () => {
     "extraImage": extraImage[0]->{
       title,
       description,
-      "image": image.asset
+      "image": image.asset,
+      "metadata": image.asset->metadata
     },
  }`
       )
@@ -133,10 +137,12 @@ export const useStateContext = () => {
     sanityClient
       .fetch(
         `
-    *[_type == "images"]{
+    *[_type == "images" && showInGallery == true]{
       title,
       description,
-      "image": image.asset
+      showInGallery,
+      "image": image.asset,
+      "metadata": image.asset->metadata
    }`
       )
       .then((res) => {
