@@ -59,3 +59,9 @@ body {
 .lightbox-img-description a {
   color: rgb(217, 119, 6);
 }
+.card-hover {
+  transform: scale(1);
+}
+.card-hover:hover {
+  transform: scale(1.03);
+}
