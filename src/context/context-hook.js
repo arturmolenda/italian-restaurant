@@ -157,6 +157,7 @@ export const useStateContext = () => {
       .fetch(
         `
     *[_type == "post" ]{
+      _id,
       title,
       "slug": slug.current,
       "category": categories[0]->title,
