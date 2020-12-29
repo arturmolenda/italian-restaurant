@@ -52,14 +52,15 @@ const SingleBlogPost = (props) => {
         <>
           <div className='relative bg-white' style={{ zIndex: -1 }}>
             <div
-              className='h-screen max-h-screen z-0 bg-fixed -mt-32 bg-center bg-no-repeat bg-cover flex flex-col justify-end'
+              className='h-screen max-h-screen z-0 bg-fixed bg-center bg-no-repeat bg-cover flex flex-col justify-end'
               style={{
                 backgroundImage: `url(${mainImageSrc})`,
                 zIndex: -1,
+                marginTop: '-10vh',
               }}
             >
               <div
-                className='mb-20 py-3 px-3 sm:px-5 w-full max-w-4xl mx-auto text-center rounded'
+                className='mb-32 py-3 px-3 sm:px-5 w-full max-w-4xl mx-auto text-center rounded'
                 style={{ backgroundColor: 'rgba(0,0,0,0.7)' }}
               >
                 <h1 className='text-2xl sm:text-3xl md:text-4xl mb-2 md:mb-3 text-white font-bold'>
@@ -74,38 +75,45 @@ const SingleBlogPost = (props) => {
               </div>
             </div>
           </div>
-          <div className='p-5 mb-5 container mx-auto max-w-4xl bg-white '>
+          <div className='mb-5 container mx-auto max-w-4xl bg-white '>
             <BlockContent
-              className={`prose lg:prose-lg max-w-full mb-10`}
+              className={`prose lg:prose-lg max-w-full mb-10 p-5`}
               blocks={post.body}
               projectId='r727n9na'
               dataset='production'
             />
             <DiscussionEmbed
+              className='p-5'
               shortname='grazie-1'
               config={{
                 identifier: id,
                 title: post.title,
               }}
             />
-            <h1 className='text-gray-700 text-3xl sm:text-4xl font-bold mt-6'>
-              Also check out newest articles!
+            <h1 className='text-gray-700 text-2xl sm:text-4xl font-bold mt-6 px-3'>
+              Also check our newest articles!
             </h1>
-            <ul className='flex pt-2 overflow-auto mr-2 last:mr-0'>
-              {blogPosts.slice(0, 6).map((article, i) => {
-                return (
-                  post._id !== article._id && (
-                    <li key={i} className='min-w-72' style={{ minWidth: 253 }}>
-                      <ArticleCard
-                        post={article}
-                        maxCharacters={40}
-                        fontSmall
-                      />
-                    </li>
-                  )
-                );
-              })}
-            </ul>
+            <div className='p-2'>
+              <ul className='flex overflow-auto'>
+                {blogPosts.slice(0, 6).map((article, i) => {
+                  return (
+                    post._id !== article._id && (
+                      <li
+                        key={i}
+                        className='min-w-72 mr-2 last:mr-1'
+                        style={{ minWidth: 253 }}
+                      >
+                        <ArticleCard
+                          post={article}
+                          maxCharacters={40}
+                          fontSmall
+                        />
+                      </li>
+                    )
+                  );
+                })}
+              </ul>
+            </div>
           </div>
         </>
       )}
