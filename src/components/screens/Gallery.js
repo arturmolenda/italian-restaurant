@@ -58,50 +58,66 @@ const Gallery = () => {
     }
   }, [currentIndex, images]);
   return (
-    <SimpleReactLightbox>
-      <div className='container mx-auto'>
-        {images && images.length !== 0 && (
-          <SRLWrapper callbacks={callbacks}>
-            <Masonry
-              breakpointCols={breakpointColumnsObj}
-              className='my-masonry-grid'
-              columnClassName='my-masonry-grid_column'
-            >
-              {images.map((img, i) => (
-                <Img
-                  key={i}
-                  src={urlFor(img.image).url()}
-                  loader={
-                    Number(img.metadata.dimensions.aspectRatio.toFixed(1)) ===
-                    1.5 ? (
-                      <div className='relative' style={{ margin: '0.7rem 0' }}>
-                        <img src={placeholderImg} alt='placeholder' />
+    <>
+      {images && images.length !== 0 && (
+        <>
+          <div className='container mx-auto flex justify-center'>
+            <h1 className='text-center mt-7 mb-5 text-4xl bg-gray-600 text-gray-100 py-4 px-8 font-italiana font-bold'>
+              Gallery
+            </h1>
+          </div>
+          <SimpleReactLightbox>
+            <div className='container mx-auto'>
+              <SRLWrapper callbacks={callbacks}>
+                <Masonry
+                  breakpointCols={breakpointColumnsObj}
+                  className='my-masonry-grid'
+                  columnClassName='my-masonry-grid_column'
+                >
+                  {images.map((img, i) => (
+                    <Img
+                      key={i}
+                      src={urlFor(img.image).url()}
+                      loader={
+                        Number(
+                          img.metadata.dimensions.aspectRatio.toFixed(1)
+                        ) === 1.5 ? (
+                          <div
+                            className='relative'
+                            style={{ margin: '0.7rem 0' }}
+                          >
+                            <img src={placeholderImg} alt='placeholder' />
 
-                        <img
-                          src={img.metadata.lqip}
-                          className='absolute top-0 w-full h-full'
-                          alt={'Thumbnail (close and open again)'}
-                        />
-                        <div className='absolute top-0 w-full h-full bg-transparent z-50' />
-                      </div>
-                    ) : (
-                      <div className='relative' style={{ margin: '0.7rem 0' }}>
-                        <img
-                          className='w-full'
-                          src={img.metadata.lqip}
-                          alt={'Thumbnail (close and open again)'}
-                        />
-                        <div className='absolute top-0 w-full h-full bg-transparent z-50' />
-                      </div>
-                    )
-                  }
-                />
-              ))}
-            </Masonry>
-          </SRLWrapper>
-        )}
-      </div>
-    </SimpleReactLightbox>
+                            <img
+                              src={img.metadata.lqip}
+                              className='absolute top-0 w-full h-full'
+                              alt={'Thumbnail (close and open again)'}
+                            />
+                            <div className='absolute top-0 w-full h-full bg-transparent z-50' />
+                          </div>
+                        ) : (
+                          <div
+                            className='relative'
+                            style={{ margin: '0.7rem 0' }}
+                          >
+                            <img
+                              className='w-full'
+                              src={img.metadata.lqip}
+                              alt={'Thumbnail (close and open again)'}
+                            />
+                            <div className='absolute top-0 w-full h-full bg-transparent z-50' />
+                          </div>
+                        )
+                      }
+                    />
+                  ))}
+                </Masonry>
+              </SRLWrapper>
+            </div>
+          </SimpleReactLightbox>
+        </>
+      )}
+    </>
   );
 };
 

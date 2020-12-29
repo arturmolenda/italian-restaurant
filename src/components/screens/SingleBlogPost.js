@@ -9,6 +9,7 @@ import ArticleCard from '../ArticleCard';
 
 import imageUrlBuilder from '@sanity/image-url';
 import client from '../../client';
+import LoadedBackground from '../LoadedBackground';
 
 const builder = imageUrlBuilder(client);
 
@@ -19,24 +20,12 @@ const urlFor = (src) => {
 const SingleBlogPost = (props) => {
   const [post, setPost] = useState({});
   const { blogPosts } = useContext(StateContext);
-  const [mainImageSrc, setMainImageSrc] = useState(null);
 
   const {
     match: {
       params: { id },
     },
   } = props;
-
-  // handles lazy bg image load
-  useEffect(() => {
-    if (post && Object.keys(post).length !== 0) {
-      setMainImageSrc(post.mainImage.metadata.lqip);
-      const src = urlFor(post.mainImage.image);
-      const img = new window.Image();
-      img.src = src;
-      img.onload = () => setMainImageSrc(src);
-    }
-  }, [post]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -51,15 +40,16 @@ const SingleBlogPost = (props) => {
       {post && Object.keys(post).length !== 0 && (
         <>
           <div className='relative bg-white' style={{ zIndex: -1 }}>
-            <div
-              className='h-screen max-h-screen z-0 bg-fixed -mt-32 bg-center bg-no-repeat bg-cover flex flex-col justify-end'
-              style={{
-                backgroundImage: `url(${mainImageSrc})`,
-                zIndex: -1,
-              }}
+            <LoadedBackground
+              src={urlFor(post.mainImage.image).url()}
+              thumbnail={post.mainImage.metadata.lqip}
+              classes={
+                'h-screen max-h-screen z-0 bg-fixed bg-center bg-no-repeat bg-cover flex flex-col justify-end'
+              }
+              inlineStyling={{ marginTop: '-10vh' }}
             >
               <div
-                className='mb-20 py-3 px-3 sm:px-5 w-full max-w-4xl mx-auto text-center rounded'
+                className='py-3 px-3 mb-32 sm:px-5 w-full max-w-4xl mx-auto text-center rounded'
                 style={{ backgroundColor: 'rgba(0,0,0,0.7)' }}
               >
                 <h1 className='text-2xl sm:text-3xl md:text-4xl mb-2 md:mb-3 text-white font-bold'>
@@ -68,44 +58,52 @@ const SingleBlogPost = (props) => {
                 <p className='max-h-8 text-white'>
                   By <span className='font-bold'>{post.author}</span>{' '}
                   <span className='text-gray-400'>
-                    {moment(post.createdAt).format('MMM Do YY')}
+                    {moment(post.createdAt).format('MMM Do YYYY')}
                   </span>
                 </p>
               </div>
-            </div>
+            </LoadedBackground>
           </div>
-          <div className='p-5 mb-5 container mx-auto max-w-4xl bg-white '>
-            <BlockContent
-              className={`prose lg:prose-lg max-w-full mb-10`}
-              blocks={post.body}
-              projectId='r727n9na'
-              dataset='production'
-            />
-            <DiscussionEmbed
-              shortname='grazie-1'
-              config={{
-                identifier: id,
-                title: post.title,
-              }}
-            />
-            <h1 className='text-gray-700 text-3xl sm:text-4xl font-bold mt-6'>
+          <div className='mb-5 container mx-auto max-w-4xl bg-white '>
+            <div className='p-5'>
+              <BlockContent
+                className={`prose lg:prose-lg max-w-full mb-10`}
+                blocks={post.body}
+                projectId='r727n9na'
+                dataset='production'
+              />
+              <DiscussionEmbed
+                shortname='grazie-1'
+                config={{
+                  identifier: id,
+                  title: post.title,
+                }}
+              />
+            </div>
+            <h1 className='text-gray-700 text-3xl sm:text-4xl font-bold mt-6 pl-3'>
               Also check out newest articles!
             </h1>
-            <ul className='flex pt-2 overflow-auto mr-2 last:mr-0'>
-              {blogPosts.slice(0, 6).map((article, i) => {
-                return (
-                  post._id !== article._id && (
-                    <li key={i} className='min-w-72' style={{ minWidth: 253 }}>
-                      <ArticleCard
-                        post={article}
-                        maxCharacters={40}
-                        fontSmall
-                      />
-                    </li>
-                  )
-                );
-              })}
-            </ul>
+            <div className='p-2 pt-0'>
+              <ul className='flex overflow-auto pt-2'>
+                {blogPosts.slice(0, 6).map((article, i) => {
+                  return (
+                    post._id !== article._id && (
+                      <li
+                        key={i}
+                        className='min-w-72'
+                        style={{ minWidth: 253 }}
+                      >
+                        <ArticleCard
+                          post={article}
+                          maxCharacters={40}
+                          fontSmall
+                        />
+                      </li>
+                    )
+                  );
+                })}
+              </ul>
+            </div>
           </div>
         </>
       )}

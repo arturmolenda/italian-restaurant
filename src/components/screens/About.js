@@ -13,7 +13,7 @@ import { Img } from 'react-image';
 
 import { StateContext } from '../../context/context';
 import client from '../../client';
-import LoadedImageSrc from '../LoadedImageSrc';
+import LoadedBackground from '../LoadedBackground';
 
 const builder = imageUrlBuilder(client);
 
@@ -32,25 +32,23 @@ const iconStylingRight =
 
 const About = () => {
   const { aboutData } = useContext(StateContext);
-
   return (
     <>
       {aboutData && Object.keys(aboutData).length !== 0 && (
         <>
-          <div
-            className='h-screen relative z-0 bg-fixed -mt-32 bg-center bg-no-repeat bg-cover flex justify-center items-center'
-            style={{
-              backgroundImage: `url(${
-                LoadedImageSrc(urlFor(aboutData.aboutUsImage.image).url()) ||
-                aboutData.aboutUsImage.metadata.lqip
-              })`,
-              zIndex: -1,
-            }}
+          <LoadedBackground
+            src={urlFor(aboutData.aboutUsImage.image).url()}
+            thumbnail={aboutData.aboutUsImage.metadata.lqip}
+            classes={
+              'relative h-screen z-0 bg-fixed bg-center bg-no-repeat bg-cover flex justify-center items-center'
+            }
+            inlineStyling={{ zIndex: -1, marginTop: '-10vh' }}
           >
-            <h1 className='text-4xl py-4 px-8 bg-gray-600 text-gray-100 font-bold font-italiana'>
+            <h1 className='text-4xl py-4 px-8 mb-12 bg-gray-600 text-gray-100 font-bold font-italiana'>
               {aboutData.title}
             </h1>
-          </div>
+          </LoadedBackground>
+
           <div className='container mx-auto'>
             <section className='px-16 lg:px-48 py-2 prose lg:prose-xl max-w-full'>
               <BlockContent
@@ -60,14 +58,14 @@ const About = () => {
               />
             </section>
           </div>
-          <div
-            className='bg-fixed bg-center bg-no-repeat bg-cover flex justify-center items-center'
-            style={{
-              backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5) ),url(${
-                LoadedImageSrc(urlFor(aboutData.extraImage.image).url()) ||
-                aboutData.extraImage.metadata.lqip
-              })`,
-
+          <LoadedBackground
+            src={urlFor(aboutData.extraImage.image).url()}
+            thumbnail={aboutData.extraImage.metadata.lqip}
+            classes={
+              'bg-fixed bg-center bg-no-repeat bg-cover flex justify-center items-center'
+            }
+            dark
+            inlineStyling={{
               zIndex: -1,
             }}
           >
@@ -137,7 +135,7 @@ const About = () => {
                 </div>
               </div>
             </section>
-          </div>
+          </LoadedBackground>
         </>
       )}
     </>

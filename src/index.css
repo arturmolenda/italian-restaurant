@@ -6,6 +6,7 @@
 
 body {
   background-color: #dcdcde;
+  overflow-x: hidden;
 }
 
 .font-italiana {
@@ -64,4 +65,34 @@ body {
 }
 .card-hover:hover {
   transform: scale(1.03);
+}
+.menuTransition-enter {
+  display: block;
+  opacity: 0;
+  height: 0px;
+}
+.menuTransition-enter-active {
+  height: 100vh;
+  opacity: 1;
+  transition: all 0.4s;
+}
+.menuTransition-enter-done {
+  height: 100vh;
+  display: block;
+}
+.menuTransition-enter-done a p {
+  border-bottom: 1px solid #c8c8c8;
+}
+.menuTransition-exit {
+  display: block;
+  height: 100vh;
+  opacity: 0;
+}
+.menuTransition-exit-active {
+  opacity: 0;
+  height: 0px;
+  transition: all 0.4s;
+}
+.menuTransition-exit-done {
+  display: none;
 }

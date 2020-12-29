@@ -5,8 +5,9 @@ import Slider from '../Carousel';
 const Home = () => {
   return (
     <>
+      <Slider />
       <div className='container  flex flex-col justify-between items-center mx-auto mt-1 h-full'>
-        <h1 className='text-2xl xl:text-5xl md:text-4xl sm:text-3xl font-italiana text-gray-800 font-bold mt-10'>
+        <h1 className='text-2xl xl:text-5xl md:text-4xl sm:text-3xl font-italiana bg-gray-600 text-gray-100 py-4 px-8 text-center font-bold mt-10'>
           Welcome to our restaurant, Grazie!
         </h1>
         <Link to='/menu'>
@@ -15,14 +16,13 @@ const Home = () => {
           </button>
         </Link>
         <p className='mt-6 mb-10 max-w-xs text-gray-600 text-center'>
-          Or if you want to learn more about us, check out{' '}
+          Or if you want to learn more about us, check our{' '}
           <Link to='/about' className='text-yellow-600'>
             About Us
           </Link>{' '}
           page!
         </p>
       </div>
-      <Slider />
     </>
   );
 };
