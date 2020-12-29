@@ -37,9 +37,11 @@ const Menu = () => {
       hours,
       days,
       specialDay,
+      specialDayHours,
       phoneNumber1,
       phoneNumber2,
       email,
+      address,
     },
     menuData,
     menuData: {
@@ -67,7 +69,11 @@ const Menu = () => {
             <p className='font-bold mt-2'>
               {days} | {hours}
             </p>
-            {specialDay && <p className='font-bold'>{specialDay}</p>}
+            {specialDay && specialDayHours && (
+              <p className='font-bold mt-2'>
+                {specialDay} | {specialDayHours}
+              </p>
+            )}
             <div className='flex-col my-3'>
               <p className='font-semibold'>Questions? Order? Table?</p>
               <p className='font-semibold'>Call us!</p>
@@ -84,12 +90,20 @@ const Menu = () => {
             </div>
             {email && (
               <p>
-                Email:{' '}
+                <span className='font-semibold'>Email:</span>{' '}
                 <a className='font-bold' href={`mailto:${email}`}>
                   {email}
                 </a>
               </p>
             )}
+            <div className='mt-2'>
+              {address &&
+                address.split(',').map((item, i) => (
+                  <p key={i} className='font-bold mx-auto text-center'>
+                    {item},
+                  </p>
+                ))}
+            </div>
           </div>
           <div className='mt-3 mb-8 max-w-md sm:max-w-4xl mx-auto border-t-2 border-dotted border-gray-700' />
           <div className='container mx-auto mb-10 max-w-md lg:max-w-full flex-col rounded lg:grid p-6 bg-gray-100 menu-grid'>
