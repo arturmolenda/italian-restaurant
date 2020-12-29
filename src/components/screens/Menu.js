@@ -19,8 +19,8 @@ const MenuHeader = ({ heading, icon }) => (
   </div>
 );
 const MenuItems = ({ items }) =>
-  items.map((item) => (
-    <div key={item._id} className='flex justify-between mb-3'>
+  items.map((item, i) => (
+    <div key={i} className='flex justify-between mb-3'>
       <div>
         <p className='font-bold text-md font-italiana'>{item.title}</p>
         <p className='italic text-sm'>{item.description}</p>
@@ -69,7 +69,8 @@ const Menu = () => {
             </p>
             {specialDay && <p className='font-bold'>{specialDay}</p>}
             <div className='flex-col my-3'>
-              <bold>Questions? Order? Table? Call us!</bold>
+              <p className='font-semibold'>Questions? Order? Table?</p>
+              <p className='font-semibold'>Call us!</p>
               {phoneNumber1 && (
                 <a className='font-bold block' href={`tel:${phoneNumber1}`}>
                   {phoneNumber1}
