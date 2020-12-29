@@ -74,9 +74,11 @@ export const useStateContext = () => {
         hours,
         days,
         specialDay,
+        specialDayHours,
         phoneNumber1,
         phoneNumber2,
         email,
+        address
     }`
       )
       .then((res) => {
