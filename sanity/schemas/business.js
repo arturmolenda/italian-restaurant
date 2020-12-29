@@ -22,8 +22,14 @@ export default {
     },
     {
       name: 'specialDay',
-      title: 'Special open hours',
-      description: 'i.e., Saturday 9:00 a.m - 6:00 p.m ',
+      title: 'Special Days',
+      description: 'i.e., Saturday - Sunday ',
+      type: 'string',
+    },
+    {
+      name: 'specialDayHours',
+      title: 'Special Day Hours Open',
+      description: 'i.e., 9:00 a.m - 6:00 p.m ',
       type: 'string',
     },
     {
@@ -39,6 +45,13 @@ export default {
     {
       name: 'email',
       title: 'Email',
+      type: 'string',
+    },
+    {
+      name: 'address',
+      title: 'Address',
+      description:
+        'i.e., Unit 14, 3 Edgar Buildings, George Street, Bath, England, BA1 2FJ',
       type: 'string',
     },
   ],
