@@ -38,16 +38,17 @@ const About = () => {
       {aboutData && Object.keys(aboutData).length !== 0 && (
         <>
           <div
-            className='h-screen relative z-0 bg-fixed -mt-32 bg-center bg-no-repeat bg-cover flex justify-center items-center'
+            className='relative h-screen z-0 bg-fixed bg-center bg-no-repeat bg-cover flex justify-center items-center'
             style={{
               backgroundImage: `url(${
                 LoadedImageSrc(urlFor(aboutData.aboutUsImage.image).url()) ||
                 aboutData.aboutUsImage.metadata.lqip
               })`,
               zIndex: -1,
+              marginTop: '-10vh',
             }}
           >
-            <h1 className='text-4xl py-4 px-8 bg-gray-600 text-gray-100 font-bold font-italiana'>
+            <h1 className='text-4xl py-4 px-8 mb-12 bg-gray-600 text-gray-100 font-bold font-italiana'>
               {aboutData.title}
             </h1>
           </div>
