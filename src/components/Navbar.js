@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import { Link, NavLink } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 
@@ -26,7 +25,7 @@ const Navbar = () => {
     setOpen(false);
   };
   return (
-    <div className='relative w-screen bg-gray-900 py-5 flex flex-col justify-center items-center text-gray-300'>
+    <div className='relative w-screen bg-gray-900 py-5 pr-2 sm:pr-6 flex flex-col justify-center items-center text-gray-300'>
       <Link to='/'>
         <h1
           className={`text text-5xl text-white font-bold font-italiana transition-all hover:text-yellow-400`}
@@ -36,7 +35,7 @@ const Navbar = () => {
       </Link>
       <CSSTransition in={open} timeout={350} classNames='menuTransition'>
         <div
-          className={`container transition-all mt-4 hidden sm:flex flex-row justify-evenly items-center`}
+          className={`container transition-all sm:pr-3 mt-4 hidden sm:flex flex-row justify-evenly items-center`}
         >
           <NavLink
             to='/'
