@@ -5,7 +5,7 @@ import { CSSTransition } from 'react-transition-group';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 
-const linkStyle = 'p-1 uppercase p-5 sm:p-0 text-sm hover:text-yellow-300';
+const linkStyle = 'uppercase p-5 sm:p-2 text-sm hover:text-yellow-300';
 const activeLink = 'text-yellow-300';
 
 const Navbar = () => {
