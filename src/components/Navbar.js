@@ -10,7 +10,6 @@ const activeLink = 'text-yellow-300';
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
-  console.log(open);
   const menuClickHandle = () => {
     if (open) {
       document.body.style.overflowY = 'auto';
