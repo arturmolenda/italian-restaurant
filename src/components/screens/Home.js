@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { StateContext } from '../../context/context';
 import Slider from '../Carousel';
+import Meta from '../Meta';
 
 const Home = () => {
+  const {
+    businessData: { businessName },
+  } = useContext(StateContext);
   return (
     <>
+      <Meta
+        title={businessName && `Welcome To Our Restaurant, ${businessName}!`}
+      />
       <Slider />
       <div className='container  flex flex-col justify-between items-center mx-auto mt-1 h-full'>
         <h1 className='text-2xl xl:text-5xl md:text-4xl sm:text-3xl font-italiana bg-gray-600 text-gray-100 py-4 px-8 text-center font-bold mt-10'>

@@ -9,6 +9,7 @@ import { SRLWrapper } from 'simple-react-lightbox';
 import { StateContext } from '../../context/context';
 import client from '../../client';
 import placeholderImg from '../../placeholderImg.png';
+import Meta from '../Meta';
 
 const builder = imageUrlBuilder(client);
 
@@ -24,7 +25,10 @@ const breakpointColumnsObj = {
 };
 
 const Gallery = () => {
-  const { galleryImages: images } = useContext(StateContext);
+  const {
+    galleryImages: images,
+    businessData: { businessName },
+  } = useContext(StateContext);
   const [currentIndex, setCurrentIndex] = useState(null);
 
   const callbacks = {
@@ -61,6 +65,7 @@ const Gallery = () => {
     <>
       {images && images.length !== 0 && (
         <>
+          <Meta title={businessName && `Gallery | ${businessName}`} />
           <div className='container mx-auto flex justify-center'>
             <h1 className='text-center mt-7 mb-5 text-4xl bg-gray-600 text-gray-100 py-4 px-8 font-italiana font-bold'>
               Gallery

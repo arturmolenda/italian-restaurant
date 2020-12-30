@@ -4,6 +4,7 @@ import Masonry from 'react-masonry-css';
 
 import { StateContext } from '../../context/context';
 import ArticleCard from '../ArticleCard';
+import Meta from '../Meta';
 
 const breakpointColumnsObj = {
   default: 4,
@@ -13,9 +14,13 @@ const breakpointColumnsObj = {
 };
 
 const BlogPosts = () => {
-  const { blogPosts } = useContext(StateContext);
+  const {
+    blogPosts,
+    businessData: { businessName },
+  } = useContext(StateContext);
   return (
     <>
+      <Meta title={businessName && `Blog | ${businessName}`} />
       {blogPosts && blogPosts.length !== 0 && (
         <>
           <div className='container mx-auto flex justify-center'>

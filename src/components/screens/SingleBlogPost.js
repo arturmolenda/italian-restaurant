@@ -10,6 +10,7 @@ import ArticleCard from '../ArticleCard';
 import imageUrlBuilder from '@sanity/image-url';
 import client from '../../client';
 import LoadedBackground from '../LoadedBackground';
+import Meta from '../Meta';
 
 const builder = imageUrlBuilder(client);
 
@@ -19,7 +20,10 @@ const urlFor = (src) => {
 
 const SingleBlogPost = (props) => {
   const [post, setPost] = useState({});
-  const { blogPosts } = useContext(StateContext);
+  const {
+    blogPosts,
+    businessData: { businessName },
+  } = useContext(StateContext);
 
   const {
     match: {
@@ -39,6 +43,7 @@ const SingleBlogPost = (props) => {
     <>
       {post && Object.keys(post).length !== 0 && (
         <>
+          <Meta title={businessName && `${post.title} | ${businessName}`} />
           <div className='relative bg-white' style={{ zIndex: -1 }}>
             <LoadedBackground
               src={urlFor(post.mainImage.image).url()}
