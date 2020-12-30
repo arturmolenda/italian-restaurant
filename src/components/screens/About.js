@@ -14,6 +14,7 @@ import { Img } from 'react-image';
 import { StateContext } from '../../context/context';
 import client from '../../client';
 import LoadedBackground from '../LoadedBackground';
+import Meta from '../Meta';
 
 const builder = imageUrlBuilder(client);
 
@@ -31,9 +32,13 @@ const iconStylingRight =
   'p-4 w-12 h-12 ml-4 rounded-full bg-yellow-600 text-white text-2xl flex items-center justify-center';
 
 const About = () => {
-  const { aboutData } = useContext(StateContext);
+  const {
+    aboutData,
+    businessData: { businessName },
+  } = useContext(StateContext);
   return (
     <>
+      <Meta title={businessName && `About Us | ${businessName}`} />
       {aboutData && Object.keys(aboutData).length !== 0 && (
         <>
           <LoadedBackground
