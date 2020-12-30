@@ -24,7 +24,15 @@ export default {
       description: 'Optional',
       type: 'text',
     },
+    {
+      name: 'showInGallery',
+      title: 'Show In Gallery Page?',
+      type: 'boolean',
+    },
   ],
+  initialValue: {
+    showInGallery: true,
+  },
   preview: {
     select: {
       title: 'title',

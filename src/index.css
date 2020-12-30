@@ -1,9 +1,98 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import url('https://unpkg.com/@tailwindcss/typography@0.2.x/dist/typography.min.css');
 @import url('https://fonts.googleapis.com/css2?family=Italiana&display=swap');
+
+body {
+  background-color: #dcdcde;
+  overflow-x: hidden;
+}
 
 .font-italiana {
   font-family: 'Italiana', serif;
+}
+
+.react-multiple-carousel__arrow {
+  outline: none !important;
+}
+
+.rounded-none-important {
+  border-radius: 0px !important;
+}
+
+.block-content-text-white > * {
+  color: #fff !important;
+}
+
+.menu-grid {
+  grid-template-columns: calc(50% - 20px) calc(50% - 20px);
+  row-gap: 10px;
+  column-gap: 40px;
+}
+
+.my-masonry-grid {
+  display: flex;
+  width: auto;
+}
+.my-masonry-grid_column {
+  padding: 0 0.35rem;
+  background-clip: padding-box;
+}
+
+.my-masonry-grid_column > img {
+  margin: 0.7rem 0;
+  cursor: pointer;
+}
+
+.lightbox-img-description {
+  top: 13px;
+  z-index: 11111;
+  color: #fff;
+  left: 20px;
+}
+@media (max-width: 550px) {
+  .lightbox-img-description {
+    top: 35px;
+    left: 10px;
+  }
+}
+.lightbox-img-description a {
+  color: rgb(217, 119, 6);
+}
+.card-hover {
+  transform: scale(1);
+}
+.card-hover:hover {
+  transform: scale(1.03);
+}
+.menuTransition-enter {
+  display: block;
+  opacity: 0;
+  height: 0px;
+}
+.menuTransition-enter-active {
+  height: 100vh;
+  opacity: 1;
+  transition: all 0.4s;
+}
+.menuTransition-enter-done {
+  height: 100vh;
+  display: block;
+}
+.menuTransition-enter-done a p {
+  border-bottom: 1px solid #c8c8c8;
+}
+.menuTransition-exit {
+  display: block;
+  height: 100vh;
+  opacity: 0;
+}
+.menuTransition-exit-active {
+  opacity: 0;
+  height: 0px;
+  transition: all 0.4s;
+}
+.menuTransition-exit-done {
+  display: none;
 }
