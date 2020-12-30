@@ -77,44 +77,25 @@ const Gallery = () => {
                 <Masonry
                   breakpointCols={breakpointColumnsObj}
                   className='my-masonry-grid'
-                  columnClassName='my-masonry-grid_column'
+                  columnClassName='my-masonry-grid_column flex flex-col'
                 >
                   {images.map((img, i) => (
-                    <Img
+                    <a
                       key={i}
-                      src={urlFor(img.image).url()}
-                      loader={
-                        Number(
-                          img.metadata.dimensions.aspectRatio.toFixed(1)
-                        ) === 1.5 ? (
-                          <div
-                            className='relative'
-                            style={{ margin: '0.7rem 0' }}
-                          >
-                            <img src={placeholderImg} alt='placeholder' />
-
-                            <img
-                              src={img.metadata.lqip}
-                              className='absolute top-0 w-full h-full'
-                              alt={'Thumbnail (close and open again)'}
-                            />
-                            <div className='absolute top-0 w-full h-full bg-transparent z-50' />
-                          </div>
-                        ) : (
-                          <div
-                            className='relative'
-                            style={{ margin: '0.7rem 0' }}
-                          >
-                            <img
-                              className='w-full'
-                              src={img.metadata.lqip}
-                              alt={'Thumbnail (close and open again)'}
-                            />
-                            <div className='absolute top-0 w-full h-full bg-transparent z-50' />
-                          </div>
-                        )
-                      }
-                    />
+                      href={urlFor(img.image).url()}
+                      className='my-1.5'
+                    >
+                      <Img
+                        src={urlFor(img.image).url()}
+                        loader={
+                          <img
+                            src={img.metadata.lqip}
+                            className='w-full h-full mb-1.5'
+                            alt={''}
+                          />
+                        }
+                      />
+                    </a>
                   ))}
                 </Masonry>
               </SRLWrapper>

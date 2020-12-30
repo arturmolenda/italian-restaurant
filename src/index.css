@@ -41,7 +41,6 @@ body {
 }
 
 .my-masonry-grid_column > img {
-  margin: 0.7rem 0;
   cursor: pointer;
 }
 
