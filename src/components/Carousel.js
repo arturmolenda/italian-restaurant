@@ -44,7 +44,10 @@ const Slider = () => {
           <Img
             key={img._id}
             alt={img.description ? img.description : 'Italian dish'}
-            src={urlFor(img.image).width(1280).url()}
+            className='w-full'
+            src={urlFor(img.image)
+              .width(img.metadata.dimensions.width / 4)
+              .url()}
             onDragStart={(e) => e.preventDefault()}
             loader={
               Number(img.metadata.dimensions.aspectRatio.toFixed(1)) === 1.5 ? (
