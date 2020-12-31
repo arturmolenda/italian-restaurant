@@ -3,12 +3,9 @@ import React, { useContext, useEffect, useState } from 'react';
 import Masonry from 'react-masonry-css';
 import imageUrlBuilder from '@sanity/image-url';
 import { Img } from 'react-image';
-import SimpleReactLightbox from 'simple-react-lightbox';
-import { SRLWrapper } from 'simple-react-lightbox';
-
+import SimpleReactLightbox, { SRLWrapper } from 'simple-react-lightbox';
 import { StateContext } from '../../context/context';
 import client from '../../client';
-import placeholderImg from '../../placeholderImg.png';
 import Meta from '../Meta';
 
 const builder = imageUrlBuilder(client);
@@ -86,7 +83,10 @@ const Gallery = () => {
                       className='my-1.5'
                     >
                       <Img
-                        src={urlFor(img.image).url()}
+                        src={urlFor(img.image)
+                          .width(img.metadata.dimensions.width / 6)
+                          .url()}
+                        className='w-full'
                         loader={
                           <img
                             src={img.metadata.lqip}

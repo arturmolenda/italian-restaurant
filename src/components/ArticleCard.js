@@ -30,8 +30,10 @@ const ArticleCard = ({ post, maxCharacters = 100, fontSmall }) => {
           }}
         >
           <Img
-            className='absolute top-0'
-            src={urlFor(post.mainImage.image).url()}
+            className='absolute top-0 w-full'
+            src={urlFor(post.mainImage.image)
+              .width(post.mainImage.metadata.dimensions.width / 6)
+              .url()}
             alt={'Article Main Image'}
             loader={
               <img
