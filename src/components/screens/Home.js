@@ -14,7 +14,7 @@ const Home = () => {
         title={businessName && `Welcome To Our Restaurant, ${businessName}!`}
       />
       <Slider />
-      <div className='container  flex flex-col justify-between items-center mx-auto mt-1 h-full'>
+      <div className='container flex flex-col justify-between items-center mx-auto mt-1 h-full'>
         <h1 className='text-2xl xl:text-5xl md:text-4xl sm:text-3xl font-italiana bg-gray-600 text-gray-100 py-4 px-8 text-center font-bold mt-10'>
           Welcome to our restaurant, Grazie!
         </h1>
