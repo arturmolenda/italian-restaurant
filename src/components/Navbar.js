@@ -24,10 +24,10 @@ const Navbar = () => {
     setOpen(false);
   };
   return (
-    <div className='relative w-screen bg-gray-900 py-5 pr-2 sm:pr-6 flex flex-col justify-center items-center text-gray-300'>
-      <Link to='/'>
+    <div className='relative w-screen bg-gray-900 py-3 sm:py-5 pr-2 sm:pr-6 flex flex-col justify-center items-center text-gray-300'>
+      <Link to='/' onClick={navLinkClickHandle}>
         <h1
-          className={`text text-5xl text-white font-bold font-italiana transition-all hover:text-yellow-400`}
+          className={`text text-4xl sm:text-5xl text-white font-bold font-italiana transition-all hover:text-yellow-400`}
         >
           GRAZIE
         </h1>
@@ -75,7 +75,7 @@ const Navbar = () => {
         </div>
       </CSSTransition>
       <button
-        className='absolute w-12 p-1 top-5 right-5 text-4xl flex justify-center items-center sm:hidden'
+        className='absolute w-12 p-2 top-2 right-5 text-3xl flex justify-center items-center sm:hidden'
         onClick={menuClickHandle}
         style={{ outline: 'none' }}
       >
