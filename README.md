@@ -1,6 +1,6 @@
 # Italian Restaurant ~ Grazie
 
-Project created with React JS | [live website](https://frosty-newton-962522.netlify.app/)
+Project created with React JS and styled with TailwindCSS | [live website](https://frosty-newton-962522.netlify.app/) 
 
 ## Features
 
